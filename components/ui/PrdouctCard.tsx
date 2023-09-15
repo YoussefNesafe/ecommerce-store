@@ -5,9 +5,12 @@ import Image from "next/image"
 import IconButton from "./IconButton"
 import { Expand, ShoppingCart } from 'lucide-react'
 import Currency from "./Currency"
+import { useRouter } from "next/navigation"
 
 
 const PrdouctCard = ({ category, color, id, images, isFeatured, name, price, size }: Product) => {
+  const router = useRouter()
+  const handleClick = () => router.push(`/product/${id}`)
   const ImageAndActions = () => {
     return (<div className="aspect-square rounded-xl bg-gray-100 relative">
       <Image src={images?.[0]?.url as string} fill alt="product" className="aspect-square object-cover rounded-md" />
@@ -35,7 +38,7 @@ const PrdouctCard = ({ category, color, id, images, isFeatured, name, price, siz
     )
   }
   return (
-    <div className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
+    <div onClick={handleClick} className="bg-white group cursor-pointer rounded-xl border p-3 space-y-4">
       <ImageAndActions />
       <Description />
       <Price />

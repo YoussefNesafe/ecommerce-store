@@ -1,20 +1,20 @@
 export type Billboard = {
-  id: String;
-  label: String;
-  imageUrl: String
+  id: string;
+  label: string;
+  imageUrl: string
 }
 
 export type Category = {
-  id: String;
-  name: String;
+  id: string;
+  name: string;
   billboard: Billboard;
 }
 
 export interface Product {
   id: string;
   category: Category;
-  name: String;
-  price: String
+  name: string;
+  price: string
   isFeatured: boolean;
   size: Size;
   color: Color;
@@ -23,16 +23,16 @@ export interface Product {
 
 export interface Image{
   id: string;
-  url:String;
+  url:string;
 }
 
 export interface Size {
-  id: String;
-  name: String;
-  value: String
+  id: string;
+  name: string;
+  value: string
 }
 export interface Color {
-  id: String;
-  name: String;
-  value: String
+  id: string;
+  name: string;
+  value: string
 }

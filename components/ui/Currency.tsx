@@ -2,7 +2,7 @@
 import useIsMounted from '@/hooks/useIsMounted'
 import { priceFormatter } from '@/lib/utils'
 
-const Currency = ({ value }: { value: String | Number }) => {
+const Currency = ({ value }: { value: string | Number }) => {
   const isMounted = useIsMounted();
   if (!isMounted) {
     return null
