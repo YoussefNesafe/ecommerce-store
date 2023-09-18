@@ -24,7 +24,7 @@ export default function RootLayout({
         <ModalProvider />
         <ToastProvider />
         <Navbar />
-        <div className='mt-[64px]'>
+        <div className='mt-16 mb-12'>
           {children}
         </div>
         <Footer />
