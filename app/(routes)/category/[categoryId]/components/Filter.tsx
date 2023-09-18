@@ -23,7 +23,6 @@ const Filter = ({ data, name, valueKey }: Props) => {
   const searchParams = useSearchParams();
   const router = useRouter();
   const selectedValue = searchParams.get(valueKey);
-  console.log({ valueKey })
   const clickHandler = (id: string) => {
     const current = qs.parse(searchParams.toString());
     const query = { ...current, [valueKey]: id }
@@ -34,7 +33,6 @@ const Filter = ({ data, name, valueKey }: Props) => {
       url: window.location.href,
       query
     }, { skipNull: true });
-    console.log(url)
     router.push(url)
   }
 
