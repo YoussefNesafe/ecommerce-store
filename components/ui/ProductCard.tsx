@@ -8,7 +8,7 @@ import Currency from "./Currency"
 import { useRouter } from "next/navigation"
 
 
-const PrdouctCard = ({ category, color, id, images, isFeatured, name, price, size }: Product) => {
+const ProductCard = ({ category, color, id, images, isFeatured, name, price, size }: Product) => {
   const router = useRouter()
   const handleClick = () => router.push(`/product/${id}`)
   const ImageAndActions = () => {
@@ -46,4 +46,4 @@ const PrdouctCard = ({ category, color, id, images, isFeatured, name, price, siz
   )
 }
 
-export default PrdouctCard
+export default ProductCard

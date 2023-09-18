@@ -8,6 +8,7 @@ type Query = {
   colorId?: string;
   isFeatured?: boolean;
 }
+const url = `${process.env.NEXT_PUBLIC_API_URL}/products`;
 
 const filteredProducts = ({ url, query }: { url: string, query: Query }) => {
   const res = qs.stringifyUrl({
@@ -22,14 +23,14 @@ const filteredProducts = ({ url, query }: { url: string, query: Query }) => {
   return { url: res }
 }
 
+
+
 export const getProducts = async (query: Query): Promise<Product[]> => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/products`;
   const res = await fetch(filteredProducts({ url, query }).url);
   return res.json();
 }
 
 export const getProductById = async (id: string): Promise<Product> => {
-  const url = `${process.env.NEXT_PUBLIC_API_URL}/products/${id}`;
-  const res = await fetch(url);
+  const res = await fetch(`${url}/${id}`);
   return res.json();
 }

@@ -20,7 +20,7 @@ const MainNav = ({ data }: MainNavProps) => {
   return (
     <nav className='mx-6 flex items-center space-x-4 lg:space-x-6'>
       {
-        routes.map(({ active, href, label }) => <Link key={href} href={href} className={cn('tetx-sm font-medium transition-colors hover:text-black ', active && 'text-black dark:text-neutral-500')} >{label}</Link>)
+        routes.map(({ active, href, label }) => <Link key={href} href={href} className={cn('tetx-sm text-neutral-500 font-medium transition-colors hover:text-black ', active && 'text-black')} >{label}</Link>)
       }
     </nav>
   )
