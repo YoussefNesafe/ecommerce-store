@@ -6,17 +6,25 @@ import IconButton from "./IconButton"
 import { Expand, ShoppingCart } from 'lucide-react'
 import Currency from "./Currency"
 import { useRouter } from "next/navigation"
+import { MouseEventHandler } from "react"
+import usePreviewModal from "@/hooks/usePreviewModal"
 
 
-const ProductCard = ({ category, color, id, images, isFeatured, name, price, size }: Product) => {
-  const router = useRouter()
-  const handleClick = () => router.push(`/product/${id}`)
+const ProductCard = ({ data }: { data: Product }) => {
+  const previewModal = usePreviewModal();
+  const router = useRouter();
+  const handleClick = () => router.push(`/product/${data?.id}`)
   const ImageAndActions = () => {
+    const onPreview: MouseEventHandler<HTMLButtonElement> = (event) => {
+      console.log('Preview clicked')
+      event.stopPropagation();
+      previewModal.onOpen(data);
+    };
     return (<div className="aspect-square rounded-xl bg-gray-100 relative">
-      <Image src={images?.[0]?.url as string} fill alt="product" className="aspect-square object-cover rounded-md" />
+      <Image src={data?.images?.[0]?.url as string} fill alt="product" className="aspect-square object-cover rounded-md" />
       <div className="opacity-0 group-hover:opacity-100 transition absolute w-full px-6 bottom-5">
         <div className="flex gap-x-6 justify-center">
-          <IconButton onClick={() => { }} icon={<Expand size={20} className="tetx-gray-600" />} />
+          <IconButton onClick={onPreview} icon={<Expand size={20} className="tetx-gray-600" />} />
           <IconButton onClick={() => { }} icon={<ShoppingCart size={20} className="tetx-gray-600" />} />
         </div>
       </div>
@@ -25,15 +33,15 @@ const ProductCard = ({ category, color, id, images, isFeatured, name, price, siz
   const Description = () => {
     return (
       <div>
-        <p className="font-semibold text-lg">{name}</p>
-        <p className="tetx-sm text-gray-500">{category.name}</p>
+        <p className="font-semibold text-lg">{data?.name}</p>
+        <p className="tetx-sm text-gray-500">{data?.category.name}</p>
       </div>
     )
   }
   const Price = () => {
     return (
       <div className="flex items-center justify-between">
-        <Currency value={price} />
+        <Currency value={data?.price} />
       </div>
     )
   }
