@@ -5,11 +5,18 @@ import { ShoppingCart } from "lucide-react";
 import Currency from "@/components/ui/Currency";
 import Button from "@/components/ui/Button";
 import { Product } from "@/types";
+import useCart from "@/hooks/useCart";
+import { MouseEventHandler } from "react";
 
 
-const ProductInfo = ({ category, color, id, images, isFeatured, name
-  , price, size }: Product) => {
+const ProductInfo = ({ data }: { data: Product }) => {
+  const cart = useCart();
+  const { color, name, price, size } = data
 
+  const onAddToCart: MouseEventHandler<HTMLButtonElement> = (event) => {
+    event.stopPropagation();
+    cart.addItem(data);
+  };
 
   return (
     <div>
@@ -33,7 +40,7 @@ const ProductInfo = ({ category, color, id, images, isFeatured, name
         </div>
       </div>
       <div className="mt-10 flex items-center gap-x-3">
-        <Button onClick={() => { }} className="flex items-center gap-x-2">
+        <Button onClick={onAddToCart} className="flex items-center gap-x-2">
           Add To Cart
           <ShoppingCart size={20} />
         </Button>
